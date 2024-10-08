@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, to gruop Bibliotic!");
+            Console.WriteLine("Hello,123 to gruop Bibliotic Projeckt!");
         }
     }
 }
