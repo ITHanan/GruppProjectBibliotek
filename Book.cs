@@ -23,43 +23,5 @@ namespace GruppProjectBibliotek
             Console.WriteLine($"Title: {Title}\nAuthor: {Author}\nISBN: {Isbn}\nChecked Out: {IsCheckedOut}");
 
         }
-
-        public void DoesBookExist() // A method to look up if we have said book! My dementia have been acting up lately... 
-        {
-
-            bool doesItExist = false;
-            string bookTitle;
-
-            while (doesItExist == false)
-            {
-
-                Console.WriteLine("Write the title and thou program shalt tell if we have it!");
-                bookTitle = Console.ReadLine();
-
-                if (bookTitle == Title) // "HELL YEAH" should be the reaction if this happens
-                {
-
-                    Console.WriteLine("This library is awesome and have this book, you are welcome!");
-
-                    doesItExist = true;
-                    break;
-
-                }
-                else if (bookTitle == null) // In case someone is illiterate #SpreadAwareness
-                {
-
-                    Console.WriteLine("Dude. You need to type something so we can look this up for you...");
-                    break;
-
-                }
-                else // Sucks to suck on this one =)
-                {
-
-                    Console.WriteLine("Either you wrote wrong or this library is way too cool for that book!");
-                    continue;
-
-                }
-            }
-        }
     }
 }
