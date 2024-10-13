@@ -8,7 +8,7 @@ namespace GruppProjectBibliotek
     {
        
 
-         List<Book> Library = new List<Book>();
+        private List<Book> Library = new List<Book>();
 
 
 
@@ -28,37 +28,42 @@ namespace GruppProjectBibliotek
 
             String isbnString = Console.ReadLine()!;
 
-            int isbn = Convert.ToInt32(isbnString);
+            if (!int .TryParse(isbnString,out int isbn))
+                {
+                Console.WriteLine("Invalid ISBN. Please enter a numric value. ");
+                return;
+            
+                }
 
-            if (title == null || author == null || isbn == 0) 
+            if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(author)) 
             {
-                Console.WriteLine("Somethimg went wrong. Please enter all required data");
+                Console.WriteLine("Something went wrong. Please enter all required data");
                 return;
             }
 
-            Library.Add(new Book(title, author, isbn));
+            bool isCheckedOut = false;
+
+            Library.Add(new Book(title, author, isbn, isCheckedOut));
 
             Console.WriteLine($"The book{title} has been successsfully entered");
         }
 
 
-
-
-
-
         public void RemoveBook()
         {
-            Console.WriteLine("Pleas Enter the title of the book that you to remove:");
+
+            Console.WriteLine("Pleas Enter the title of the book that you want to remove:");
 
             string title = Console.ReadLine()!;
 
-            Book  removingTheBook = null;
+            Book?  removingTheBook = null;
 
             foreach (Book book in Library)
             {
                 if (book.Title == title)
                 {
                     removingTheBook = book;
+                    break;
                 }
 
                 else if (removingTheBook != null)
@@ -69,7 +74,7 @@ namespace GruppProjectBibliotek
                 }
                 else 
                 {
-                    Console.WriteLine($"Something went wrong the Book {title} cannot be found.");
+                    Console.WriteLine($"Something went wrong. The Book {title} cannot be found.");
                 }
                 
             }
@@ -91,9 +96,5 @@ namespace GruppProjectBibliotek
             }
         }
         
-
-
-
-
     }
 }

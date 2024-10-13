@@ -7,7 +7,7 @@ namespace GruppProjectBibliotek
         public int Isbn { get; set; }
         public bool IsCheckedOut { get; set; }
 
-        public Book(string title, string author, int isbn ,int isCheckedOut) // The parametres of the class Book (Duuh) for when to create a new object. Self checkout coming February 30th
+        public Book(string title, string author, int isbn ,bool isCheckedOut) // The parametres of the class Book (Duuh) for when to create a new object. Self checkout coming February 30th
         {
 
             Title = title;
@@ -35,7 +35,7 @@ namespace GruppProjectBibliotek
             {
 
                 Console.WriteLine("Write the title and thou program shalt tell if we have it!");
-                bookTitle = Console.ReadLine();
+                bookTitle = Console.ReadLine()!;
 
                 if (bookTitle == Title) // "HELL YEAH" should be the reaction if this happens
                 {
