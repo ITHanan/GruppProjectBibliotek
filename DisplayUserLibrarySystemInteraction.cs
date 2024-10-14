@@ -35,19 +35,19 @@ namespace GruppProjectBibliotek
                     switch (choice)
                     {
                         case 1:
-                            //string titletoAddBook = Console.ReadLine()!;
-                            library.AddBook(/*titletoAddBook*/);
+                           
+                            library.AddBook();
                             Console.WriteLine("AddBook function");
                             break;
                         case 2:
                             Console.WriteLine("RemoveBook function");
                            
-                            library.RemoveBook(/*titletoRemoveBook*/);
+                            library.RemoveBook();
                             break;
                         case 3:
                             Console.WriteLine("SearchBook function");
-                          
-                            library.SearchBook();
+                            string titletoSearchBook = Console.ReadLine()!;
+                            library.SearchBook(titletoSearchBook);
                             break;
                         case 4:
                             Console.WriteLine("DisplayAllBook function");
@@ -56,13 +56,13 @@ namespace GruppProjectBibliotek
                             break;
                         case 5:
                             Console.WriteLine("CheckOutBook function");
-                          //  string titletoCheckOutBook = Console.ReadLine()!;
-                            library.CheckOutBook(/*titletoCheckOutBook*/);
+                          string titletoCheckOutBook = Console.ReadLine()!;
+                            library.CheckOutBook(titletoCheckOutBook);
                             break;
                         case 6:
                             Console.WriteLine("ReturnBook function");
-                          //  string titletoReturnBook = Console.ReadLine()!;
-                            library.ReturnBook(/*titletoReturnBook*/);
+                           string titletoReturnBook = Console.ReadLine()!;
+                            library.ReturnBook(titletoReturnBook);
                             break;
                         case 0:
                             Console.WriteLine("Exit...");
