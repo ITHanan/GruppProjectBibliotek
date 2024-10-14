@@ -6,12 +6,7 @@ namespace GruppProjectBibliotek
 {
     public class BookFunctionCore
     {
-       
-
         private List<Book> Library = new List<Book>();
-
-
-
 
         public void AddBook() 
 
@@ -81,7 +76,7 @@ namespace GruppProjectBibliotek
 
         }
 
-        public void DisplyAllBook()
+        public void DisplayAllBooks()
         {
             if (!Library.Any())
             {
