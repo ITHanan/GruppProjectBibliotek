@@ -35,19 +35,19 @@ namespace GruppProjectBibliotek
        
         public void SearchBook(string title)
         {
-           // bookService.SearchBook(title); 
+           bookService.SearchBook(title); 
         }
 
        
         public void CheckOutBook(string title)
         {
-           // bookService.CheckOut(title);
+           bookService.CheckOut(title);
         }
 
         
         public void ReturnBook(string title)
         {
-            // bookService.ReturnBook(title); 
+            bookService.ReturnBook(title); 
         }
     }
 }
