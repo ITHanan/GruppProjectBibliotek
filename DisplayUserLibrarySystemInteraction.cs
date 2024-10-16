@@ -2,13 +2,13 @@ namespace GruppProjectBibliotek
 {
     public class DisplayUserLibrarySystemInteraction
     {
-        // LibrarySystem library = new LibrarySystem();
+        LibrarySystem library = new LibrarySystem();
 
 
-        // public DisplayUserLibrarySystemInteraction(LibrarySystem lib) //Constructor
-        // {
-        //     this.library = lib;
-        // }
+        public DisplayUserLibrarySystemInteraction(LibrarySystem lib) //Constructor
+        {
+            this.library = lib;
+        }
 
          public void DisplayMenu()
         {
@@ -35,32 +35,34 @@ namespace GruppProjectBibliotek
                     switch (choice)
                     {
                         case 1:
-                            // library.AddBook();
+                            //string titletoAddBook = Console.ReadLine()!;
+                            library.AddBook(/*titletoAddBook*/);
                             Console.WriteLine("AddBook function");
                             break;
                         case 2:
                             Console.WriteLine("RemoveBook function");
-                            // library.RemoveBook();
+                           
+                            library.RemoveBook(/*titletoRemoveBook*/);
                             break;
                         case 3:
                             Console.WriteLine("SearchBook function");
-
-                            // library.SearchBook();
+                          
+                            library.SearchBook();
                             break;
                         case 4:
                             Console.WriteLine("DisplayAllBook function");
 
-                            // library.DisplayAllBooks();
+                            library.DisplayAllBooks();
                             break;
                         case 5:
                             Console.WriteLine("CheckOutBook function");
-
-                            // library.CheckOutBook();
+                          //  string titletoCheckOutBook = Console.ReadLine()!;
+                            library.CheckOutBook(/*titletoCheckOutBook*/);
                             break;
                         case 6:
                             Console.WriteLine("ReturnBook function");
-
-                            // library.ReturnBook();
+                          //  string titletoReturnBook = Console.ReadLine()!;
+                            library.ReturnBook(/*titletoReturnBook*/);
                             break;
                         case 0:
                             Console.WriteLine("Exit...");
