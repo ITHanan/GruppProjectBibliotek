@@ -35,14 +35,14 @@ namespace GruppProjectBibliotek
                     switch (choice)
                     {
                         case 1:
-                            //string titletoAddBook = Console.ReadLine()!;
-                            library.AddBook(/*titletoAddBook*/);
+                           
+                            library.AddBook();
                             Console.WriteLine("AddBook function");
                             break;
                         case 2:
                             Console.WriteLine("RemoveBook function");
                            
-                            library.RemoveBook(/*titletoRemoveBook*/);
+                            library.RemoveBook();
                             break;
                         case 3:
                             Console.WriteLine("SearchBook function");
