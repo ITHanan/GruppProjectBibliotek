@@ -6,8 +6,12 @@ namespace GruppProjectBibliotek
 {
     public class BookFunctionCore
     {
-        //Ditt arbete här 
-        public List<Book> Library = new List<Book>();
+        public List<Book> books;
+
+   public BookFunctionCore(List<Book> libraryBooks)
+    {
+        books = libraryBooks;
+    }
 
         public void AddBook()
 
@@ -39,9 +43,9 @@ namespace GruppProjectBibliotek
 
             bool isCheckedOut = false;
 
-            Library.Add(new Book(title, author, isbn, isCheckedOut));
+            books.Add(new Book(title, author, isbn, isCheckedOut));
 
-            Console.WriteLine($"The book{title} has been successsfully entered");
+            Console.WriteLine($"The book {title} has been successsfully entered");
         }
 
 
@@ -51,39 +55,31 @@ namespace GruppProjectBibliotek
 
             string title = Console.ReadLine()!;
 
-            Book? removingTheBook = null;
+            Book? removingTheBook = books.Find(book => book.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
 
-            foreach (Book book in Library)
+            if (removingTheBook != null)
             {
-                if (book.Title == title)
-                {
-                    removingTheBook = book;
-                    break;
-                }
-
-                else if (removingTheBook != null)
-                {
-                    Library.Remove(removingTheBook);
-                    Console.WriteLine($"The book {title} has been deleted ");
-                }
-                else
-                {
-                    Console.WriteLine($"Something went wrong. The Book {title} cannot be found.");
-                }
+                books.Remove(removingTheBook);
+                Console.WriteLine($"The book \"{title}\" has been deleted.");
+            }
+            else
+            {
+                Console.WriteLine($"Something went wrong. The Book {title} cannot be found.");
             }
         }
 
         public void DisplayAllBooks()
         {
-            if (!Library.Any())
+            if (!books.Any())
             {
-                Console.WriteLine("Ther are no books in th library\n");
+                Console.WriteLine("There are no books in the library\n");
                 return;
             }
 
             Console.WriteLine("This is a list of all the books in the library ");
-            foreach (Book book in Library)
+            foreach (Book book in books)
             {
+                System.Console.WriteLine('\n');
                 book.DisplayBookInfo();
             }
         }
