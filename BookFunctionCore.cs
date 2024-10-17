@@ -7,7 +7,7 @@ namespace GruppProjectBibliotek
     public class BookFunctionCore
     {
         //Ditt arbete här 
-        private List<Book> Library = new List<Book>();
+        public List<Book> Library = new List<Book>();
 
         public void AddBook()
 
