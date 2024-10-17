@@ -6,12 +6,12 @@ namespace GruppProjectBibliotek
 {
     public class BookFunctionCore
     {
-        public List<Book> books;
+        public List<Book> Library = new List<Book>();
 
-   public BookFunctionCore(List<Book> libraryBooks)
-    {
-        books = libraryBooks;
-    }
+    public BookFunctionCore(List<Book> libraryBooks)
+        {
+            Library = libraryBooks;
+        }
 
         public void AddBook()
 
@@ -43,43 +43,54 @@ namespace GruppProjectBibliotek
 
             bool isCheckedOut = false;
 
-            books.Add(new Book(title, author, isbn, isCheckedOut));
+            Library.Add(new Book(title, author, isbn, isCheckedOut));
 
             Console.WriteLine($"The book {title} has been successsfully entered");
         }
 
-
+        // Deleting a book by title 
         public void RemoveBook()
         {
             Console.WriteLine("Pleas Enter the title of the book that you want to remove:");
 
-            string title = Console.ReadLine()!;
+            string bookToBeDeleted = Console.ReadLine()!;
 
-            Book? removingTheBook = books.Find(book => book.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+            bool bookfound = false;
 
-            if (removingTheBook != null)
+
+            foreach (Book book in Library)
             {
-                books.Remove(removingTheBook);
-                Console.WriteLine($"The book \"{title}\" has been deleted.");
+                if (book.Title == bookToBeDeleted)
+                {
+                    Library.Remove(book);
+                    Console.WriteLine($"The book {bookToBeDeleted} has been deleted ");
+                    bookfound = true;
+                    break;
+                }
+
             }
-            else
-            {
-                Console.WriteLine($"Something went wrong. The Book {title} cannot be found.");
-            }
+
+                if (!bookfound)
+                {
+
+                    Console.WriteLine($"Something went wrong. The Book {bookToBeDeleted} cannot be found.");
+
+                }
+
         }
 
         public void DisplayAllBooks()
         {
-            if (!books.Any())
+            if (!Library.Any())
             {
                 Console.WriteLine("There are no books in the library\n");
                 return;
             }
 
             Console.WriteLine("This is a list of all the books in the library ");
-            foreach (Book book in books)
+            foreach (Book book in Library)
             {
-                System.Console.WriteLine('\n');
+                Console.WriteLine('\n');
                 book.DisplayBookInfo();
             }
         }
