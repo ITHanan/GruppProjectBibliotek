@@ -31,26 +31,29 @@ namespace GruppProjectBibliotek
                 switch (userInputInt)
                 {
                     case 1:
-                        //string titletoAddBook = Console.ReadLine()!;
-                        library.AddBook(/*titletoAddBook*/);
+                        library.AddBook();
                         break;
-                    case 2:                           
-                        library.RemoveBook(/*titletoRemoveBook*/);
+                    case 2:  
+                        library.RemoveBook();
                         break;
                     case 3:
-                        library.SearchBook();
+                        Console.WriteLine("Enter the title of the book you want to search:");
+                    string titleToSearch = Console.ReadLine()!;
+                        library.SearchBook(titleToSearch);
                         break;
                     case 4:
                         library.DisplayAllBooks();
                         break;
                     case 5:
-                        //  string titletoCheckOutBook = Console.ReadLine()!;
-                        library.CheckOutBook(/*titletoCheckOutBook*/);
-                        break;
+                        Console.WriteLine("Enter the title of the book you want to check out:");
+                        string titleToCheckOut = Console.ReadLine()!;
+                        library.CheckOutBook(titleToCheckOut);
+                    break;
                     case 6:
-                        //  string titletoReturnBook = Console.ReadLine()!;
-                        library.ReturnBook(/*titletoReturnBook*/);
-                        break;
+                        Console.WriteLine("Enter the title of the book you want to return:");
+                        string titleToReturn = Console.ReadLine()!;
+                        library.ReturnBook(titleToReturn);
+                    break;
                     case 0:
                         Console.WriteLine("Exit...");
                         running = false;

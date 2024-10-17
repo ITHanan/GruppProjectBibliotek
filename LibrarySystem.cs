@@ -2,9 +2,8 @@ namespace GruppProjectBibliotek
 {
     public class LibrarySystem
     {
-      
-        private BookFunctionCore bookCore; 
-        private BookFunctionServices bookService;
+        public BookFunctionCore bookCore; 
+        public BookFunctionServices bookService;
         public List<Book>books = new List<Book>();
 
         public LibrarySystem()
@@ -14,40 +13,30 @@ namespace GruppProjectBibliotek
             bookService = new BookFunctionServices(); 
         }
 
-       
         public void AddBook()
         {
             bookCore.AddBook(); 
         }
-
-        
         public void RemoveBook()
         {
             bookCore.RemoveBook(); 
         }
-
-        
         public void DisplayAllBooks()
         {
             bookCore.DisplayAllBooks(); 
         }
-
-       
         public void SearchBook(string title)
         {
            bookService.SearchBook(title); 
         }
-
-       
         public void CheckOutBook(string title)
         {
-           bookService.CheckOut(title);
+        bookService.CheckOutBook(title);
         }
 
-        
         public void ReturnBook(string title)
         {
-            bookService.ReturnBook(title); 
+        bookService.ReturnBook(title);
         }
     }
 }
