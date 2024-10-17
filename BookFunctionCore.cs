@@ -41,36 +41,38 @@ namespace GruppProjectBibliotek
 
             Library.Add(new Book(title, author, isbn, isCheckedOut));
 
-            Console.WriteLine($"The book{title} has been successsfully entered");
+            Console.WriteLine($"The book {title} has been successsfully entered");
         }
 
-
+        // Deleting a book by title 
         public void RemoveBook()
         {
             Console.WriteLine("Pleas Enter the title of the book that you want to remove:");
 
-            string title = Console.ReadLine()!;
+            string bookToBeDeleted = Console.ReadLine()!;
 
-            Book? removingTheBook = null;
+            bool bookfound = false;
+
 
             foreach (Book book in Library)
             {
-                if (book.Title == title)
+                if (book.Title == bookToBeDeleted)
                 {
-                    removingTheBook = book;
+                    Library.Remove(book);
+                    Console.WriteLine($"The book {bookToBeDeleted} has been deleted ");
+                    bookfound = true;
                     break;
                 }
 
-                else if (removingTheBook != null)
-                {
-                    Library.Remove(removingTheBook);
-                    Console.WriteLine($"The book {title} has been deleted ");
-                }
-                else
-                {
-                    Console.WriteLine($"Something went wrong. The Book {title} cannot be found.");
-                }
             }
+
+                if (!bookfound)
+                {
+
+                    Console.WriteLine($"Something went wrong. The Book {bookToBeDeleted} cannot be found.");
+
+                }
+
         }
 
         public void DisplayAllBooks()
