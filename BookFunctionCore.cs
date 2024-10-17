@@ -47,6 +47,7 @@ namespace GruppProjectBibliotek
 
         public void RemoveBook()
         {
+
             Console.WriteLine("Pleas Enter the title of the book that you want to remove:");
 
             string title = Console.ReadLine()!;
@@ -65,12 +66,15 @@ namespace GruppProjectBibliotek
                 {
                     Library.Remove(removingTheBook);
                     Console.WriteLine($"The book {title} has been deleted ");
+
                 }
                 else
                 {
                     Console.WriteLine($"Something went wrong. The Book {title} cannot be found.");
                 }
+
             }
+
         }
 
         public void DisplayAllBooks()
