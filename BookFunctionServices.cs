@@ -1,94 +1,73 @@
+using System.Reflection;
+
 namespace GruppProjectBibliotek
 {
-    class BookFunctionServices
+    public class BookFunctionServices
     {
-        private List<Book> books = new List<Book>();  // List of books
+        public List<Book> books = new List<Book>();  // List of books
 
-        // Search for books based on the title
-        public List<Book> SearchBook(string title)
+        //Search for books based on the titl
+    public void CheckOutBook(string title)
         {
-            if (string.IsNullOrWhiteSpace(title))
+            Book bookToCheckOut = books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase))!;
+            if (bookToCheckOut != null)
             {
-                Console.WriteLine("Error: The title cannot be empty or contain only whitespace.");
-                return new List<Book>();  // Return an empty list for invalid input
-            }
-
-            var foundBooks = books
-                .Where(book => book.Title.Contains(title, StringComparison.OrdinalIgnoreCase))
-                .ToList();
-
-            if (foundBooks.Count == 0)
-            {
-                Console.WriteLine($"No books found with the title \"{title}\".");
-            }
-            else
-            {
-                Console.WriteLine($"Found {foundBooks.Count} book(s):");
-                foreach (var book in foundBooks)
+                if (bookToCheckOut.IsCheckedOut)
                 {
-                    Console.WriteLine($"- {book.Title} by {book.Author}");
-                }
-            }
-
-            return foundBooks;
-        }
-
-        // Check out a book based on the title
-        public void CheckOut(string title)
-        {
-            if (string.IsNullOrWhiteSpace(title))
-            {
-                Console.WriteLine("Error: The title cannot be empty or contain only whitespace.");
-            }
-            else
-            {
-                Book book = Find(title);
-                if (book == null)  // Check if the book is not found
-                {
-                    Console.WriteLine($"Error: The book \"{title}\" was not found.");
-                }
-                else if (book.IsCheckedOut)
-                {
-                    Console.WriteLine($"The book \"{book.Title}\" is already checked out.");
+                    Console.WriteLine("Book is already checked out.");
                 }
                 else
                 {
-                    book.IsCheckedOut = true;
-                    Console.WriteLine($"The book \"{book.Title}\" has been checked out.");
+                    bookToCheckOut.IsCheckedOut = true;
+                    Console.WriteLine("Book checked out successfully.");
                 }
             }
+            else
+            {
+                Console.WriteLine("Book not found.");
+            }
         }
+      public void SearchBook(string title)
+        {
+            Console.WriteLine("Enter the title of the book you want to search: ");
+
+             List<Book> foundBooks = books.FindAll(b => b.Title.ToLower().Contains(title.ToLower()));
+
+            if (foundBooks.Count > 0)
+            {
+                Console.WriteLine("BOOKS FOUND");
+                foreach (Book book in foundBooks)
+                {
+                    book.DisplayBookInfo();
+                }
+            }
+            else
+            {
+                Console.WriteLine("No books found by that author.");
+            }
+        }
+
 
         // Return a book
-        public void ReturnBook(string title)
+       public void ReturnBook(string title)
+    {
+        Book bookToReturn = books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase))!;
+        if (bookToReturn != null)
         {
-            if (string.IsNullOrWhiteSpace(title))
+            if (bookToReturn.IsCheckedOut)
             {
-                Console.WriteLine("Error: The title cannot be empty or contain only whitespace.");
+                bookToReturn.IsCheckedOut = false;
+                Console.WriteLine("Book returned successfully.");
             }
             else
             {
-                Book book = Find(title);
-                if (book == null)  // Check if the book is not found
-                {
-                    Console.WriteLine($"Error: The book \"{title}\" was not found.");
-                }
-                else if (!book.IsCheckedOut)
-                {
-                    Console.WriteLine($"The book \"{book.Title}\" is already returned.");
-                }
-                else
-                {
-                    book.IsCheckedOut = false;
-                    Console.WriteLine($"The book \"{book.Title}\" has been returned.");
-                }
+                Console.WriteLine("Book is not checked out.");
             }
         }
-
-        private Book Find(string title)
+        else
         {
-            // Return the first matching book or null if not found
-            return books.FirstOrDefault(book => book.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+            Console.WriteLine("Book not found.");
         }
+    }
     }
 }
