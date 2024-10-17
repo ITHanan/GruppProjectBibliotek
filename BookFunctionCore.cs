@@ -6,8 +6,12 @@ namespace GruppProjectBibliotek
 {
     public class BookFunctionCore
     {
-        //Ditt arbete här 
         public List<Book> Library = new List<Book>();
+
+    public BookFunctionCore(List<Book> libraryBooks)
+        {
+            Library = libraryBooks;
+        }
 
         public void AddBook()
 
@@ -79,13 +83,14 @@ namespace GruppProjectBibliotek
         {
             if (!Library.Any())
             {
-                Console.WriteLine("Ther are no books in th library\n");
+                Console.WriteLine("There are no books in the library\n");
                 return;
             }
 
             Console.WriteLine("This is a list of all the books in the library ");
             foreach (Book book in Library)
             {
+                Console.WriteLine('\n');
                 book.DisplayBookInfo();
             }
         }

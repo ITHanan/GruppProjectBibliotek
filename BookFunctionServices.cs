@@ -4,9 +4,13 @@ namespace GruppProjectBibliotek
 {
     public class BookFunctionServices
     {
-        public List<Book> books = new List<Book>();  // List of books
+        public List<Book> books = new List<Book>();  
 
-        //Search for books based on the titl
+        public BookFunctionServices(List<Book> sharedBooks)
+        {
+            books = sharedBooks;
+        }
+
     public void CheckOutBook(string title)
         {
             Book bookToCheckOut = books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase))!;
@@ -27,47 +31,46 @@ namespace GruppProjectBibliotek
                 Console.WriteLine("Book not found.");
             }
         }
-      public void SearchBook(string title)
+        
+        public List<string> SearchBook(string title)
         {
-            Console.WriteLine("Enter the title of the book you want to search: ");
-
-             List<Book> foundBooks = books.FindAll(b => b.Title.ToLower().Contains(title.ToLower()));
-
-            if (foundBooks.Count > 0)
+            List<Book> foundSearchedBooks = books.Where(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase)).ToList();
+            
+            if (foundSearchedBooks.Count > 0)
             {
-                Console.WriteLine("BOOKS FOUND");
-                foreach (Book book in foundBooks)
+                Console.WriteLine($"Found {foundSearchedBooks.Count} book(s) with that title:");
+                foreach (Book book in foundSearchedBooks)
                 {
                     book.DisplayBookInfo();
                 }
             }
             else
             {
-                Console.WriteLine("No books found by that author.");
+                Console.WriteLine("No books found by that title.");
             }
+            
+            return foundSearchedBooks.Select(b => b.Title).ToList();
         }
 
-
-        // Return a book
        public void ReturnBook(string title)
-    {
-        Book bookToReturn = books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase))!;
-        if (bookToReturn != null)
         {
-            if (bookToReturn.IsCheckedOut)
+            Book bookToReturn = books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase))!;
+            if (bookToReturn != null)
             {
-                bookToReturn.IsCheckedOut = false;
-                Console.WriteLine("Book returned successfully.");
+                if (bookToReturn.IsCheckedOut)
+                {
+                    bookToReturn.IsCheckedOut = false;
+                    Console.WriteLine("Book returned successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("Book is not checked out.");
+                }
             }
             else
             {
-                Console.WriteLine("Book is not checked out.");
+                Console.WriteLine("Book not found.");
             }
         }
-        else
-        {
-            Console.WriteLine("Book not found.");
-        }
-    }
     }
 }
